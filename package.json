@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vitest/eslint-plugin": "^1.1.14",
+    "eslint": "^9.16.0",
+    "prettier": "3.4.1",
+    "vitest": "^2.1.8"
+  },
+  "scripts": {
+    "test": "prettier . --write && eslint . && vitest"
+  }
+}
