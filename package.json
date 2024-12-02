@@ -9,6 +9,8 @@
     "vitest": "^2.1.8"
   },
   "scripts": {
-    "test": "prettier . --write && eslint . && vitest"
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "test": "vitest"
   }
 }
