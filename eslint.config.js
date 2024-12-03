@@ -17,5 +17,6 @@ export default [
     languageOptions: {
       parser: tsParser,
     },
+    ignores: ['src/interfaces/*'],
   },
 ]
