@@ -35,7 +35,7 @@ export interface TimeTravelOptionsBase {
   days: number
 }
 
-type TimeTravelMethod = (DateToAdd: Date, N: number) => Date
+type TimeTravelMethod = (dateToAdd: Date, n: number) => Date
 
 export interface TimeTravelMethods {
   years: TimeTravelMethod
