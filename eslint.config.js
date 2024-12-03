@@ -11,6 +11,7 @@ export default [
     },
     rules: {
       ...vitest.configs.recommended.rules,
+      'vitest/no-identical-title': 'off',
       'no-unused-vars': 'warn',
       'no-undef': 'warn',
     },
