@@ -90,6 +90,14 @@ export class DateDifference extends DateDifferenceBase {
     return timeDifference
   }
 
+  getDateSlashFormat(dateToFormat: string): string {
+    const date = this.getDate(dateToFormat)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`
+  }
+
   getTimeTravelDate(start: string, timeTravelOptions: TimeTravelOptions): string {
     const timeOptions: TimeTravelOptionsBase = {
       years: timeTravelOptions.years,
