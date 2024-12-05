@@ -427,3 +427,94 @@ describe('testing getTimeTravelDate method', () => {
     expect(dateCalculator.getTimeTravelDate('2022-01-23', options)).toBe('2019-09-20')
   })
 })
+
+describe('testing getTimeTravelDate method', () => {
+  const dateCalculator = new DateDifference()
+
+  it('should return 2022-05-26', () => {
+    const options = {
+      past: false,
+      years: 2,
+      months: 3,
+      weeks: 4,
+      days: 5,
+    }
+
+    expect(dateCalculator.getTimeTravelDate('2020-01-23', options)).toBe('2022-05-26')
+  })
+
+  it('should return 2019-09-20', () => {
+    const options = {
+      past: true,
+      years: 2,
+      months: 3,
+      weeks: 4,
+      days: 5,
+    }
+
+    expect(dateCalculator.getTimeTravelDate('2022-01-23', options)).toBe('2019-09-20')
+  })
+})
+
+describe('testing formatTimeTravelOptions method', () => {
+  const dateCalculator = new DateDifference()
+
+  it('should format correctly', () => {
+    const dateTravelOptions = {
+      years: 1,
+      months: 2,
+      weeks: 3,
+      days: 4,
+    }
+
+    expect(dateCalculator.formatTimeTravelOptions(dateTravelOptions)).toBe(
+      '1 year, 2 months, 3 weeks and 4 days',
+    )
+  })
+
+  it('should format correctly', () => {
+    const dateTravelOptions = {
+      years: 1,
+      months: 0,
+      weeks: 2,
+      days: 1,
+    }
+
+    expect(dateCalculator.formatTimeTravelOptions(dateTravelOptions)).toBe(
+      '1 year, 2 weeks and 1 day',
+    )
+  })
+
+  it('should format correctly', () => {
+    const dateTravelOptions = {
+      years: 0,
+      months: 0,
+      weeks: 0,
+      days: 1,
+    }
+
+    expect(dateCalculator.formatTimeTravelOptions(dateTravelOptions)).toBe('1 day')
+  })
+
+  it('should format correctly', () => {
+    const dateTravelOptions = {
+      years: 0,
+      months: 0,
+      weeks: 0,
+      days: 19,
+    }
+
+    expect(dateCalculator.formatTimeTravelOptions(dateTravelOptions)).toBe('19 days')
+  })
+
+  it('should format correctly', () => {
+    const dateTravelOptions = {
+      years: 0,
+      months: 12,
+      weeks: 0,
+      days: 19,
+    }
+
+    expect(dateCalculator.formatTimeTravelOptions(dateTravelOptions)).toBe('12 months and 19 days')
+  })
+})
