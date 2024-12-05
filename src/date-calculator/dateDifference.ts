@@ -29,6 +29,31 @@ export class DateDifference extends DateDifferenceBase {
     d: false,
   }
 
+  getDateSlashFormat(dateToFormat: string): string {
+    const date = this.getDate(dateToFormat)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`
+  }
+
+  formatTimeTravelOptions(options: TimeTravelOptionsBase): string {
+    const timeTravelArr = []
+
+    for (const key in options) {
+      const typedKey = key as keyof TimeTravelOptionsBase
+      if (options[typedKey]) {
+        timeTravelArr.push(
+          `${options[typedKey]} ${options[typedKey] > 1 ? typedKey : typedKey.slice(0, -1)}`,
+        )
+      }
+    }
+    const lastElement = timeTravelArr.pop()
+    return timeTravelArr.length > 0
+      ? `${timeTravelArr.join(', ')} and ${lastElement}`
+      : `${lastElement}`
+  }
+
   private setDates(start: Date, end: Date) {
     this.startDate = this.getDate(start)
     this.endDate = this.getDate(end)
@@ -37,9 +62,11 @@ export class DateDifference extends DateDifferenceBase {
   private areDatesEqual(date1: Date, date2: Date): boolean {
     return this.formatUTCDate(date1) === this.formatUTCDate(date2)
   }
+
   private setOptionsCalculated(newOptions: DateOptions) {
     this.dateOptionsCalculated = newOptions
   }
+
   private optionAlreadyCalculated(dateOption: keyof DateOptions): boolean {
     return this.dateOptionsCalculated[dateOption]
   }
@@ -88,14 +115,6 @@ export class DateDifference extends DateDifferenceBase {
     this.setDates(startDate, endDate)
     this.setOptionsCalculated(options)
     return timeDifference
-  }
-
-  getDateSlashFormat(dateToFormat: string): string {
-    const date = this.getDate(dateToFormat)
-    const day = date.getUTCDate()
-    const month = date.getUTCMonth() + 1
-    const year = date.getUTCFullYear()
-    return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`
   }
 
   getTimeTravelDate(start: string, timeTravelOptions: TimeTravelOptions): string {
