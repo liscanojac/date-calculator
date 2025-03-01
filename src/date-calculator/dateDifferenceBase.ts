@@ -161,7 +161,14 @@ export class DateDifferenceBase {
     return `${year}-${month}-${day}`
   }
 
-  addDays(dateToAdd: Date, days: number): Date {
+  addDays(dateToAdd: Date, days: number, utc = true): Date {
+
+    if (!utc) {
+      const newDate = new Date(dateToAdd);
+      newDate.setDate(dateToAdd.getDate() + days);
+  
+      return newDate;
+    }
     const newDate = new Date(
       Date.UTC(dateToAdd.getUTCFullYear(), dateToAdd.getUTCMonth(), dateToAdd.getUTCDate()),
     )
