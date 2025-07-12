@@ -121,7 +121,7 @@ export class DateDifference extends DateDifferenceBase {
     return timeDifference
   }
 
-  getTimeTravelDate(start: string, timeTravelOptions: TimeTravelOptions): string {
+  getTimeTravelDate(start: string | Date, timeTravelOptions: TimeTravelOptions): string {
     const timeOptions: TimeTravelOptionsBase = {
       years: timeTravelOptions.years,
       months: timeTravelOptions.months,
