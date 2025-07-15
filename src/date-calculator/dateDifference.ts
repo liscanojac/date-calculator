@@ -29,7 +29,7 @@ export class DateDifference extends DateDifferenceBase {
     d: false,
   }
 
-  formatDateToDisplay(dateToFormat: string): string {
+  formatDateToDisplay(dateToFormat: Date | string): string {
     const date = this.getDate(dateToFormat);
     return new Intl.DateTimeFormat('en-US', {
         month: 'long',
