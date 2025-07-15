@@ -29,6 +29,16 @@ export class DateDifference extends DateDifferenceBase {
     d: false,
   }
 
+  formatDateToDisplay(dateToFormat: string): string {
+    const date = this.getDate(dateToFormat);
+    return new Intl.DateTimeFormat('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(date)
+  }
+
   getDateSlashFormat(dateToFormat: string): string {
     const date = this.getDate(dateToFormat)
     const day = date.getUTCDate()
